@@ -85,6 +85,7 @@ namespace SerakTesseractTrainer
                     config = File.ReadAllLines(Environment.CurrentDirectory.ToString() + '\\' + "Config.cfg");
                     ShellExcutor.tesseractlocation = config[0];
                     ShellExcutor.isolang = config[1];
+                    txtisolang.Text = config[1];
                 }
                 catch (Exception)
                 {
@@ -121,9 +122,10 @@ namespace SerakTesseractTrainer
             if (file.ShowDialog()==DialogResult.OK)
             {
                 txtfreqwods.Lines = File.ReadAllLines(file.FileName,Encoding.UTF8);
-                ts.browsefreqwords(file.FileName);       
+                ts.browsefreqwords(file.FileName);
+                txtfreqwods.Enabled = true;
             }
-            txtfreqwods.Enabled = true;
+            
         }
 
         private void browseDictionary(object sender, EventArgs e)
@@ -134,8 +136,9 @@ namespace SerakTesseractTrainer
             {
                 txtDictionary.Lines = File.ReadAllLines(file.FileName, Encoding.UTF8);
                 ts.browseDictionary(file.FileName);
+                txtDictionary.Enabled = true;
             }
-            txtDictionary.Enabled = true;
+            
         }
 
         private void btnCreateNewDiction_Click(object sender, EventArgs e)
@@ -159,8 +162,9 @@ namespace SerakTesseractTrainer
             {
                 txtunicharambig.Lines = File.ReadAllLines(file.FileName, Encoding.UTF8);
                 ts.browseUnicharAmbig(file.FileName);
+                txtunicharambig.Enabled = true;
             }
-            txtunicharambig.Enabled = true;
+            
         }
 
         private void btncreateunichar_Click(object sender, EventArgs e)
@@ -202,13 +206,18 @@ namespace SerakTesseractTrainer
                 {
                     //trash temporary file;
                     File.Delete(txtLocation.Text.Substring(0, txtLocation.Text.LastIndexOf('\\')) + @"\output.txt");
-                }            
+                }
+                btnBrowseToComp.Enabled = true;
+                lblPercent.Enabled = true;
+                progPercent.Enabled = true;
             }
+
         }
 
         private void oCRModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tabControl1.Enabled = true;
+            tabControl1.SelectedIndex = 2;
         }
 
         private void HelpMenuStripClick(object sender, EventArgs e)
@@ -220,6 +229,42 @@ namespace SerakTesseractTrainer
         {
             AboutBox ab = new AboutBox();
             ab.Show();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog file = new OpenFileDialog();
+            file.Filter = "Text File(*.txt)|*.txt";
+            if (file.ShowDialog()==DialogResult.OK)
+            {
+                bool fileloadedSuccesfully=ts.BrowseRatingWord(file.FileName,txtRecognizedWord.Lines);
+                if (fileloadedSuccesfully)
+                {
+                    btnRate.Enabled = true;
+                }
+            }
+        }
+        float score;
+        float prog;
+        private void btnRate_Click(object sender, EventArgs e)
+        {
+            prog = 0.0f;        
+            score= ts.returnScore();
+            timer1.Enabled = true;
+            timer1.Start();
+            timer1.Tick += timer1_Tick;     //A little bit of animation wont kill us !!! lol
+        }
+        void timer1_Tick(object sender, EventArgs e)
+        {
+            prog=(float)Math.Round(prog += 0.3f,2);
+            progPercent.Value = (int)prog;
+            lblPercent.Text = prog + "%";
+            if (prog >= score)
+            {
+                timer1.Stop();
+                lblPercent.Text = score + "%";
+                progPercent.Value = (int)score;
+            }
         }
     }
 }

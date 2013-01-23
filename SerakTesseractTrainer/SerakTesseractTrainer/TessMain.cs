@@ -364,5 +364,63 @@ namespace SerakTesseractTrainer
             sh.cmdExcute("tesseract.exe",ShellExcutor.tesseractlocation," "+imagepath+" "+imagepath.Substring(0,imagepath.LastIndexOf('\\'))+"\\output -l "+lang,imagepath.Substring(0,imagepath.LastIndexOf('\\')));
             return (File.ReadAllLines(imagepath.Substring(0,imagepath.LastIndexOf('\\'))+"\\output.txt",Encoding.UTF8));
         }
+        List<string> originalwordlist = new List<string>();
+        List<string> recognizedwordlist = new List<string>();
+        int totalwords;
+        public bool BrowseRatingWord(string file,string[] text)
+        {
+            string[] originaltxt=File.ReadAllLines(file);
+            foreach (string item in originaltxt)
+            {
+                foreach (string subitem in item.Split(' '))
+                {
+                    originalwordlist.Add(subitem);
+                }
+            }
+            foreach (string item in text)
+            {
+                foreach (string substring in item.Split(' '))
+                {
+                    recognizedwordlist.Add(substring);
+                }
+            }
+            if (originaltxt.Count<string>() > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public float returnScore()
+        {
+            int correctwords = 0; 
+            IEnumerable<string> distrecognized = recognizedwordlist.Distinct<string>();
+            IEnumerable<string> distoriginal = originalwordlist.Distinct<string>();
+            totalwords = distoriginal.Count<string>(); //total number of words
+            foreach (string item1 in distoriginal)
+            {
+                foreach (string item2 in distrecognized)
+                {
+                    if (item2 == item1)
+                    {
+                        correctwords++;
+                    }
+                }
+            }
+            float tempscore;    //Percent Must not Exced 100%
+            if (correctwords<=totalwords)
+            {
+                tempscore = (float)correctwords / (float)totalwords * 100;
+            }
+            else
+            {
+                tempscore = (float)totalwords / (float)correctwords * 100;
+            }
+            double score = Math.Round(tempscore, 2);
+            return (float)score;
+        }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,6 +71,11 @@
             this.btncreateunichar = new System.Windows.Forms.Button();
             this.btnbrwseunichar = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.progPercent = new System.Windows.Forms.ProgressBar();
+            this.lblPercent = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnRate = new System.Windows.Forms.Button();
+            this.btnBrowseToComp = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.txtRecognizedWord = new System.Windows.Forms.TextBox();
@@ -77,6 +83,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtLocation = new System.Windows.Forms.TextBox();
             this.txtisolang = new System.Windows.Forms.TextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -217,7 +224,8 @@
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton3.Text = "Save Project";
+            this.toolStripButton3.Text = "OCR Mode";
+            this.toolStripButton3.Click += new System.EventHandler(this.oCRModeToolStripMenuItem_Click);
             // 
             // tabControl1
             // 
@@ -513,6 +521,11 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.progPercent);
+            this.tabPage3.Controls.Add(this.lblPercent);
+            this.tabPage3.Controls.Add(this.label3);
+            this.tabPage3.Controls.Add(this.btnRate);
+            this.tabPage3.Controls.Add(this.btnBrowseToComp);
             this.tabPage3.Controls.Add(this.button6);
             this.tabPage3.Controls.Add(this.button5);
             this.tabPage3.Controls.Add(this.txtRecognizedWord);
@@ -527,6 +540,56 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Test OCR";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // progPercent
+            // 
+            this.progPercent.Enabled = false;
+            this.progPercent.Location = new System.Drawing.Point(464, 408);
+            this.progPercent.Name = "progPercent";
+            this.progPercent.Size = new System.Drawing.Size(274, 23);
+            this.progPercent.TabIndex = 6;
+            // 
+            // lblPercent
+            // 
+            this.lblPercent.AutoSize = true;
+            this.lblPercent.Enabled = false;
+            this.lblPercent.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPercent.Location = new System.Drawing.Point(399, 408);
+            this.lblPercent.Name = "lblPercent";
+            this.lblPercent.Size = new System.Drawing.Size(31, 23);
+            this.lblPercent.TabIndex = 5;
+            this.lblPercent.Text = "0%";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 413);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(123, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Browse Text to Compare";
+            // 
+            // btnRate
+            // 
+            this.btnRate.Enabled = false;
+            this.btnRate.Location = new System.Drawing.Point(281, 408);
+            this.btnRate.Name = "btnRate";
+            this.btnRate.Size = new System.Drawing.Size(75, 23);
+            this.btnRate.TabIndex = 4;
+            this.btnRate.Text = "Rate";
+            this.btnRate.UseVisualStyleBackColor = true;
+            this.btnRate.Click += new System.EventHandler(this.btnRate_Click);
+            // 
+            // btnBrowseToComp
+            // 
+            this.btnBrowseToComp.Enabled = false;
+            this.btnBrowseToComp.Location = new System.Drawing.Point(172, 408);
+            this.btnBrowseToComp.Name = "btnBrowseToComp";
+            this.btnBrowseToComp.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowseToComp.TabIndex = 4;
+            this.btnBrowseToComp.Text = "Browse";
+            this.btnBrowseToComp.UseVisualStyleBackColor = true;
+            this.btnBrowseToComp.Click += new System.EventHandler(this.button8_Click);
             // 
             // button6
             // 
@@ -555,7 +618,7 @@
             this.txtRecognizedWord.Multiline = true;
             this.txtRecognizedWord.Name = "txtRecognizedWord";
             this.txtRecognizedWord.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtRecognizedWord.Size = new System.Drawing.Size(727, 394);
+            this.txtRecognizedWord.Size = new System.Drawing.Size(727, 357);
             this.txtRecognizedWord.TabIndex = 2;
             // 
             // label2
@@ -589,6 +652,10 @@
             this.txtisolang.Name = "txtisolang";
             this.txtisolang.Size = new System.Drawing.Size(100, 20);
             this.txtisolang.TabIndex = 0;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1;
             // 
             // MainForm
             // 
@@ -677,5 +744,11 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem2;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.ProgressBar progPercent;
+        private System.Windows.Forms.Label lblPercent;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnRate;
+        private System.Windows.Forms.Button btnBrowseToComp;
+        private System.Windows.Forms.Timer timer1;
     }
 }

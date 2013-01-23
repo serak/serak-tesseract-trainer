@@ -1,26 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{F137F36D-5C7D-4332-8499-55E713215DDB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test2", "test2\test2.csproj", "{C3533CCE-86D7-4E3C-9D32-E8050268A23D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerakTesseractTrainer", "SerakTesseractTrainer\SerakTesseractTrainer.csproj", "{04699EFA-8926-4BA2-AE94-5E486579E2D3}"
 EndProject
 Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F137F36D-5C7D-4332-8499-55E713215DDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F137F36D-5C7D-4332-8499-55E713215DDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F137F36D-5C7D-4332-8499-55E713215DDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F137F36D-5C7D-4332-8499-55E713215DDB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C3533CCE-86D7-4E3C-9D32-E8050268A23D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C3533CCE-86D7-4E3C-9D32-E8050268A23D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C3533CCE-86D7-4E3C-9D32-E8050268A23D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C3533CCE-86D7-4E3C-9D32-E8050268A23D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{04699EFA-8926-4BA2-AE94-5E486579E2D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{04699EFA-8926-4BA2-AE94-5E486579E2D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04699EFA-8926-4BA2-AE94-5E486579E2D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
