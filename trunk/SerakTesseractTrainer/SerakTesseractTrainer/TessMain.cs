@@ -7,6 +7,7 @@ using System.Xml;
 using System.Windows.Forms;
 using System.Collections;
 using System.Xml.Linq;
+using System.Threading;
 
 namespace SerakTesseractTrainer
 {
@@ -133,9 +134,8 @@ namespace SerakTesseractTrainer
                 projectFolder = projectPath + "\\TrainData";
                 Fonts.font_properties=File.ReadAllLines(projectFolder + @"\font_properties");
                 ProjXML.Load(openpro.FileName);
-                XmlNode tesseractpoject = ProjXML.SelectSingleNode("TesseractProject");
-                XmlNode tessimages = tesseractpoject.SelectSingleNode("TessImages");
-                XmlNode tessbox = tesseractpoject.SelectSingleNode("TessBoxFiles");
+                XmlNode tessimages = ProjXML.SelectSingleNode("TesseractProject/TessImages");
+                XmlNode tessbox = ProjXML.SelectSingleNode("TesseractProject/TessBoxFiles");
                 xmlimages = (XmlElement)tessimages;
                 xmlboxFiles = (XmlElement)tessbox;
                 XmlNodeList tempimagenode = tessimages.SelectNodes("Images");
@@ -143,8 +143,8 @@ namespace SerakTesseractTrainer
                 {
                     images.Add(item.InnerText);
                 }
-                //TODO:load dictinary if exists
-                
+                //TODO:load dictionary if exists
+
             }
         }
         public void setFontProperties()
@@ -325,7 +325,7 @@ namespace SerakTesseractTrainer
                 }
                 if (File.Exists(projectFolder + @"\unambig-dawg"))
                 {
-                    sh.cmdExcute("wordlist2dawg.exe", ShellExcutor.tesseractlocation, " unambig-dawg " + ShellExcutor.isolang + ".unambig-dawg " + ShellExcutor.isolang + ".unicharset ", projectFolder);
+                    sh.cmdExcute("wordlist2dawg.exe", ShellExcutor.tesseractlocation, " unambig-dawg " + ShellExcutor.isolang + ".unicharambigs " + ShellExcutor.isolang + ".unicharset ", projectFolder);
                 }
                 if (File.Exists(projectFolder + @"\freq-dawg"))
                 {
@@ -420,6 +420,28 @@ namespace SerakTesseractTrainer
             }
             double score = Math.Round(tempscore, 2);
             return (float)score;
+        }
+
+        public void removeItem(int p)
+        {
+            try
+            {
+                File.Delete(projectFolder + "\\" + images[p].ToString());
+                File.Delete(projectFolder + "\\" + images[p].ToString().Substring(0, images[p].ToString().LastIndexOf('.')) + ".box");
+                images.RemoveAt(p);
+                XmlNode tempnode1 = ProjXML.SelectSingleNode("TesseractProject/TessImages");
+                XmlNode tempnodebox = ProjXML.SelectSingleNode("TesseractProject/TessBoxFiles");
+                XmlNodeList nodes = tempnode1.SelectNodes("Images");
+                XmlNodeList nodesbox = tempnodebox.SelectNodes("BoxFiles");
+                nodes[p].ParentNode.RemoveChild(nodes[p]);
+                nodesbox[p].ParentNode.RemoveChild(nodesbox[p]);
+                ProjXML.Save(projectFile);
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                MessageBox.Show("Error Has Occurred Make sure You Have Selected An item", "Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
+            }  
         }
     }
 }
