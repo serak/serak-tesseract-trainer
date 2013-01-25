@@ -424,17 +424,23 @@ namespace SerakTesseractTrainer
 
         public void removeItem(int p)
         {
+            XmlNode tempnode1 = ProjXML.SelectSingleNode("TesseractProject/TessImages");
+            XmlNode tempnodebox = ProjXML.SelectSingleNode("TesseractProject/TessBoxFiles");
+            XmlNodeList nodes = tempnode1.SelectNodes("Images");
+            XmlNodeList nodesbox = tempnodebox.SelectNodes("BoxFiles");
             try
             {
-                File.Delete(projectFolder + "\\" + images[p].ToString());
-                File.Delete(projectFolder + "\\" + images[p].ToString().Substring(0, images[p].ToString().LastIndexOf('.')) + ".box");
-                images.RemoveAt(p);
-                XmlNode tempnode1 = ProjXML.SelectSingleNode("TesseractProject/TessImages");
-                XmlNode tempnodebox = ProjXML.SelectSingleNode("TesseractProject/TessBoxFiles");
-                XmlNodeList nodes = tempnode1.SelectNodes("Images");
-                XmlNodeList nodesbox = tempnodebox.SelectNodes("BoxFiles");
-                nodes[p].ParentNode.RemoveChild(nodes[p]);
-                nodesbox[p].ParentNode.RemoveChild(nodesbox[p]);
+                if (File.Exists(projectFolder + "\\" + images[p].ToString()))
+                {
+                    File.Delete(projectFolder + "\\" + images[p].ToString());
+                    images.RemoveAt(p);
+                    nodes[p].ParentNode.RemoveChild(nodes[p]);
+                }
+                if (File.Exists(projectFolder + "\\" + images[p].ToString().Substring(0, images[p].ToString().LastIndexOf('.')) + ".box"))
+                {
+                    File.Delete(projectFolder + "\\" + images[p].ToString().Substring(0, images[p].ToString().LastIndexOf('.')) + ".box");
+                    nodesbox[p].ParentNode.RemoveChild(nodesbox[p]);
+                }         
                 ProjXML.Save(projectFile);
             }
             catch (ArgumentOutOfRangeException ex)
