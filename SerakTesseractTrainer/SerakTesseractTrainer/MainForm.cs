@@ -24,7 +24,7 @@ namespace SerakTesseractTrainer
         private void newProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ts.createNewproject();
-            this.Text = "Tesseract 3.02 Trainer -"+TessMain.projectFile;
+            this.Text = "Serak Trainer For Tesseract 3.0X -" + TessMain.projectFile;
             if (!(TessMain.projectFolder==null))
             {
                 tabControl1.Enabled = true;
@@ -41,8 +41,7 @@ namespace SerakTesseractTrainer
         }
 
         private void openPorjectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Text = "Tesseract 3.02 Trainer -" + TessMain.projectFile;
+        {   
             ts.openProject();
             if (!(TessMain.projectFolder == null))
             {
@@ -53,6 +52,7 @@ namespace SerakTesseractTrainer
             {
                 listBox1.Items.Add(item.ToString());
             }
+            this.Text = "Serak Trainer For Tesseract 3.0X -" + TessMain.projectFile;
             Thread t = new Thread(Loaddictionaries);
             t.Priority = ThreadPriority.Lowest;
             t.Start();
