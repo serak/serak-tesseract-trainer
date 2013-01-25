@@ -266,8 +266,9 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(257, 34);
             this.button7.TabIndex = 2;
-            this.button7.Text = "Remove File";
+            this.button7.Text = "Remove Selected";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.removeNode);
             // 
             // listBox1
             // 

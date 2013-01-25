@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Threading;
 
 namespace SerakTesseractTrainer
 {
@@ -51,9 +52,34 @@ namespace SerakTesseractTrainer
             foreach (var item in TessMain.images)
             {
                 listBox1.Items.Add(item.ToString());
-            }    
+            }
+            Thread t = new Thread(Loaddictionaries);
+            t.Priority = ThreadPriority.Lowest;
+            t.Start();
         }
-
+        #region Loading file Thread
+        private void Loaddictionaries(object obj)
+        {
+            if (File.Exists(TessMain.projectFolder + @"\word-list"))
+            {
+                txtDictionary.Lines = File.ReadAllLines(TessMain.projectFolder + @"\word-list");
+                txtDictionary.Enabled = true;
+                btnSaveDictionary.Enabled = false;
+            }
+            if (File.Exists(TessMain.projectFolder + @"\freq-dawg"))
+            {
+                txtfreqwods.Lines = File.ReadAllLines(TessMain.projectFolder + @"\freq-dawg");
+                txtfreqwods.Enabled = true;
+                btncreateNew.Enabled = false;
+            }
+            if (File.Exists(TessMain.projectFolder + @"\unambig-dawg"))
+            {
+                txtunicharambig.Lines = File.ReadAllLines(TessMain.projectFolder + @"\unambig-dawg");
+                txtunicharambig.Enabled = true;
+                btnsaveunichar.Enabled = false;
+            }
+        }
+        #endregion
         private void defineFontProperties(object sender, EventArgs e)
         {
             fontwind = new Fonts();
@@ -265,6 +291,20 @@ namespace SerakTesseractTrainer
                 lblPercent.Text = score + "%";
                 progPercent.Value = (int)score;
             }
+        }
+
+        private void removeNode(object sender, EventArgs e)
+        {
+            DialogResult rs=MessageBox.Show("Are You sure You Want To Remove This Item?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (rs==DialogResult.Yes)
+            {
+                ts.removeItem(listBox1.SelectedIndex);
+                listBox1.Items.Clear();
+                foreach (string item in TessMain.images)
+                {
+                    listBox1.Items.Add(item);
+                }
+            }  
         }
     }
 }
