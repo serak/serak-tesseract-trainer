@@ -132,8 +132,6 @@ namespace SerakTesseractTrainer
                 projectPath = projectFile.Substring(0, projectFile.LastIndexOf('\\'));
                 projectFolder = projectPath + "\\TrainData";
                 Fonts.font_properties=File.ReadAllLines(projectFolder + @"\font_properties");
-                //TODO:xml reader and image adder to the list box
-                //ProjXML = new XmlDocument();
                 ProjXML.Load(openpro.FileName);
                 XmlNode tesseractpoject = ProjXML.SelectSingleNode("TesseractProject");
                 XmlNode tessimages = tesseractpoject.SelectSingleNode("TessImages");
@@ -145,6 +143,7 @@ namespace SerakTesseractTrainer
                 {
                     images.Add(item.InnerText);
                 }
+                //TODO:load dictinary if exists
                 
             }
         }
@@ -238,32 +237,32 @@ namespace SerakTesseractTrainer
 
         public void browseDictionary(string wordlisttext)
         {
-            if (!File.Exists(projectFolder + @"\word-dawg"))
+            if (!File.Exists(projectFolder + @"\word-list"))
             {
-                File.Copy(wordlisttext, projectFolder + @"\word-dawg");
+                File.Copy(wordlisttext, projectFolder + @"\word-list");
             }
             else
             {
                 DialogResult rs = MessageBox.Show("File Already Exist Do you Want To Replace It?", "File Exist", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
                 if (rs == DialogResult.Yes)
                 {
-                    File.Copy(wordlisttext, projectFolder + @"\word-dawg", true);
+                    File.Copy(wordlisttext, projectFolder + @"\word-list", true);
                 }
             }
         }
 
         public void createNewDictionary(string[] rt)
         {
-            if (!File.Exists(projectFolder + @"\word-dawg"))
+            if (!File.Exists(projectFolder + @"\word-list"))
             {
-                File.WriteAllLines(projectFolder + @"\word-dawg", rt, Encoding.UTF8);
+                File.WriteAllLines(projectFolder + @"\word-list", rt, Encoding.UTF8);
             }
             else
             {
                 DialogResult rs = MessageBox.Show("File Already Exist Do you Want To Replace It?", "File Exist", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
                 if (rs == DialogResult.Yes)
                 {
-                    File.WriteAllLines(projectFolder + @"\word-dawg", rt, Encoding.UTF8);
+                    File.WriteAllLines(projectFolder + @"\word-list", rt, Encoding.UTF8);
                 }
             }
         }
@@ -322,15 +321,15 @@ namespace SerakTesseractTrainer
                 ShellExcutor sh = new ShellExcutor();
                 if (File.Exists(projectFolder+@"\word-list"))
                 {
-                    sh.cmdExcute("wordlist2dawg.exe", ShellExcutor.tesseractlocation, " word-list " + ShellExcutor.isolang + "word-list " + ShellExcutor.isolang + ".unicharset ", projectFolder);
+                    sh.cmdExcute("wordlist2dawg.exe", ShellExcutor.tesseractlocation, " word-list " + ShellExcutor.isolang + ".word-dawg " + ShellExcutor.isolang + ".unicharset ", projectFolder);
                 }
                 if (File.Exists(projectFolder + @"\unambig-dawg"))
                 {
-                    sh.cmdExcute("wordlist2dawg.exe", ShellExcutor.tesseractlocation, " unambig-dawg " + ShellExcutor.isolang + "unambig-dawg " + ShellExcutor.isolang + ".unicharset ", projectFolder);
+                    sh.cmdExcute("wordlist2dawg.exe", ShellExcutor.tesseractlocation, " unambig-dawg " + ShellExcutor.isolang + ".unambig-dawg " + ShellExcutor.isolang + ".unicharset ", projectFolder);
                 }
                 if (File.Exists(projectFolder + @"\freq-dawg"))
                 {
-                    sh.cmdExcute("wordlist2dawg.exe", ShellExcutor.tesseractlocation, " freq-dawg " + ShellExcutor.isolang + "freq-dawg " + ShellExcutor.isolang + ".unicharset ", projectFolder);
+                    sh.cmdExcute("wordlist2dawg.exe", ShellExcutor.tesseractlocation, " freq-dawg " + ShellExcutor.isolang + ".freq-dawg " + ShellExcutor.isolang + ".unicharset ", projectFolder);
                 }
                 try
                 {
