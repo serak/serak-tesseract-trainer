@@ -29,6 +29,7 @@ namespace SerakTesseractTrainer
             {
                 tabControl1.Enabled = true;
             }
+            listBox1.Items.Clear();
         }
         private void AddImagesToProject(object sender, EventArgs e)
         {
@@ -218,7 +219,6 @@ namespace SerakTesseractTrainer
             if (file.ShowDialog()==DialogResult.OK)
             {
                 txtLocation.Text = file.FileName;
-                txtisolang.Text = ShellExcutor.isolang;
             }
         }
 
@@ -248,7 +248,7 @@ namespace SerakTesseractTrainer
 
         private void HelpMenuStripClick(object sender, EventArgs e)
         {
-
+            //TODO:help
         }
 
         private void AboutMenuStripClicked(object sender, EventArgs e)
