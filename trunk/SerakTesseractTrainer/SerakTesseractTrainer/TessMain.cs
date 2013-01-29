@@ -316,8 +316,6 @@ namespace SerakTesseractTrainer
             {
                 Directory.CreateDirectory(projectFolder + @"\Tessdata");
             }
-            else
-            {
                 ShellExcutor sh = new ShellExcutor();
                 if (File.Exists(projectFolder+@"\word-list"))
                 {
@@ -354,7 +352,6 @@ namespace SerakTesseractTrainer
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-            }
         }
 
         public string[] recognizeimage(string imagepath,string lang)
