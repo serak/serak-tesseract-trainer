@@ -15,7 +15,8 @@ namespace SerakTesseractTrainer
     {
         string[] config = new string[2];
         TessMain ts = new TessMain();
-        Fonts fontwind;
+        //Fonts fontwind;
+        NewFontInteface fnt;
         public MainForm()
         {
             InitializeComponent();    
@@ -83,8 +84,10 @@ namespace SerakTesseractTrainer
         #endregion
         private void defineFontProperties(object sender, EventArgs e)
         {
-            fontwind = new Fonts();
-            fontwind.Show();
+            //fontwind = new Fonts();
+            //fontwind.Show();
+            fnt= new NewFontInteface();
+            fnt.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
