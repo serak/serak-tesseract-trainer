@@ -132,7 +132,7 @@ namespace SerakTesseractTrainer
                 projectFile = openpro.FileName;
                 projectPath = projectFile.Substring(0, projectFile.LastIndexOf('\\'));
                 projectFolder = projectPath + "\\TrainData";
-                Fonts.font_properties=File.ReadAllLines(projectFolder + @"\font_properties");
+                //Fonts.font_properties=File.ReadAllLines(projectFolder + @"\font_properties");
                 ProjXML.Load(openpro.FileName);
                 XmlNode tessimages = ProjXML.SelectSingleNode("TesseractProject/TessImages");
                 XmlNode tessbox = ProjXML.SelectSingleNode("TesseractProject/TessBoxFiles");
@@ -437,7 +437,7 @@ namespace SerakTesseractTrainer
                 {
                     File.Delete(projectFolder + "\\" + images[p].ToString().Substring(0, images[p].ToString().LastIndexOf('.')) + ".box");
                     nodesbox[p].ParentNode.RemoveChild(nodesbox[p]);
-                }         
+                }
                 ProjXML.Save(projectFile);
             }
             catch (ArgumentOutOfRangeException ex)
