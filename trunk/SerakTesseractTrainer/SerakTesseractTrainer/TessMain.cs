@@ -357,7 +357,7 @@ namespace SerakTesseractTrainer
         public string[] recognizeimage(string imagepath,string lang)
         {
             ShellExcutor sh = new ShellExcutor();
-            sh.cmdExcute("tesseract.exe",ShellExcutor.tesseractlocation," "+imagepath+" "+imagepath.Substring(0,imagepath.LastIndexOf('\\'))+"\\output -l "+lang,imagepath.Substring(0,imagepath.LastIndexOf('\\')));
+            sh.cmdExcute("tesseract.exe",ShellExcutor.tesseractlocation," \""+imagepath+"\" \""+imagepath.Substring(0,imagepath.LastIndexOf('\\'))+"\\output\" -l "+lang,imagepath.Substring(0,imagepath.LastIndexOf('\\')));
             return (File.ReadAllLines(imagepath.Substring(0,imagepath.LastIndexOf('\\'))+"\\output.txt",Encoding.UTF8));
         }
         List<string> originalwordlist = new List<string>();
