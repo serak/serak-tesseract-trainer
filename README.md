@@ -19,6 +19,6 @@ Features:
 <br>prerequisite:<br>
 <ul><li>tesseract OCR binary 3.02<br>
 </li><li>naming convention. i.e every font image should be named like this( lang.font_name.exp0.tif) or similar maner just make sure you dont have greater than or less than 3 dots in your font file name(including the with the extension separator)<br>
-<img src='http://img831.imageshack.us/img831/1392/capturesyl.jpg'></img></li></ul>
+</li></ul>
 
 <a href='http://www.youtube.com/watch?v=47rgBL9NZkM'><b>Video Tutorial</b></a>
