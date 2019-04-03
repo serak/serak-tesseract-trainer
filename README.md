@@ -2,17 +2,15 @@
 ## A Front End GUI for Training Tesseract 3.02 ##
 
 
-&lt;hr&gt;
+
+**Features:**
 
 
-Features:
   * Train tesseract without even touching the Keyboard
   * Managed Training , in kinda Project Manner
   * Test Your Training tessdata without having to manually count each word.
   * combine the tessdata
 
-
-&lt;hr&gt;
 
 
 **Note: Make sure You configured The trainer with tesseract OCR engine**
