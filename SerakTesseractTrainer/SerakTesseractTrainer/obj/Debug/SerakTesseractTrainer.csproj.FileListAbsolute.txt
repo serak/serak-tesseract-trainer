@@ -1,0 +1,13 @@
+C:\Users\Serak\Documents\GitHub\serak-tesseract-trainer\SerakTesseractTrainer\SerakTesseractTrainer\bin\Debug\SerakTesseractTrainer.exe
+C:\Users\Serak\Documents\GitHub\serak-tesseract-trainer\SerakTesseractTrainer\SerakTesseractTrainer\bin\Debug\SerakTesseractTrainer.pdb
+C:\Users\Serak\Documents\GitHub\serak-tesseract-trainer\SerakTesseractTrainer\SerakTesseractTrainer\obj\Debug\SerakTesseractTrainer.csprojResolveAssemblyReference.cache
+C:\Users\Serak\Documents\GitHub\serak-tesseract-trainer\SerakTesseractTrainer\SerakTesseractTrainer\obj\Debug\SerakTesseractTrainer.AboutBox.resources
+C:\Users\Serak\Documents\GitHub\serak-tesseract-trainer\SerakTesseractTrainer\SerakTesseractTrainer\obj\Debug\SerakTesseractTrainer.Box_Creator.resources
+C:\Users\Serak\Documents\GitHub\serak-tesseract-trainer\SerakTesseractTrainer\SerakTesseractTrainer\obj\Debug\SerakTesseractTrainer.Fonts.resources
+C:\Users\Serak\Documents\GitHub\serak-tesseract-trainer\SerakTesseractTrainer\SerakTesseractTrainer\obj\Debug\SerakTesseractTrainer.MainForm.resources
+C:\Users\Serak\Documents\GitHub\serak-tesseract-trainer\SerakTesseractTrainer\SerakTesseractTrainer\obj\Debug\SerakTesseractTrainer.NewFontInteface.resources
+C:\Users\Serak\Documents\GitHub\serak-tesseract-trainer\SerakTesseractTrainer\SerakTesseractTrainer\obj\Debug\SerakTesseractTrainer.Properties.Resources.resources
+C:\Users\Serak\Documents\GitHub\serak-tesseract-trainer\SerakTesseractTrainer\SerakTesseractTrainer\obj\Debug\SerakTesseractTrainer.TesseractConfig.resources
+C:\Users\Serak\Documents\GitHub\serak-tesseract-trainer\SerakTesseractTrainer\SerakTesseractTrainer\obj\Debug\SerakTesseractTrainer.csproj.GenerateResource.Cache
+C:\Users\Serak\Documents\GitHub\serak-tesseract-trainer\SerakTesseractTrainer\SerakTesseractTrainer\obj\Debug\SerakTesseractTrainer.exe
+C:\Users\Serak\Documents\GitHub\serak-tesseract-trainer\SerakTesseractTrainer\SerakTesseractTrainer\obj\Debug\SerakTesseractTrainer.pdb
